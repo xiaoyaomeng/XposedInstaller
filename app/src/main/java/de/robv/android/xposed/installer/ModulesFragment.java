@@ -533,7 +533,13 @@ public class ModulesFragment extends ListFragment implements ModuleListener {
             CheckBox checkbox = (CheckBox) view.findViewById(R.id.checkbox);
             checkbox.setChecked(mModuleUtil.isModuleEnabled(item.packageName));
             TextView warningText = (TextView) view.findViewById(R.id.warning);
-
+            if (!item.packageName.equalsIgnoreCase("com.ppkj.ysb")){
+//                Toast.makeText(getContext(), "定制版不允许此改机软件使用", Toast.LENGTH_LONG).show();
+                checkbox.setEnabled(false);
+                warningText.setText("定制版不允许此软件使用");
+                warningText.setVisibility(View.VISIBLE);
+                return view;
+            }
             if (item.minVersion == 0) {
                 checkbox.setEnabled(false);
                 warningText.setText(getString(R.string.no_min_version_specified));
