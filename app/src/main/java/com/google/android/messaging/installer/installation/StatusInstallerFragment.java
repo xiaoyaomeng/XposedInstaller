@@ -155,6 +155,7 @@ public class StatusInstallerFragment extends Fragment {
         // TODO This should probably compare the full version string, not just the number part.
         int active = XposedApp.getActiveXposedVersion();
         int installed = XposedApp.getInstalledXposedVersion();
+        Log.e("panghu", "installed : " + installed + " , active : " + active);
         if (installed < 0) {
             txtInstallError.setText(R.string.framework_not_installed);
             txtInstallError.setTextColor(getResources().getColor(R.color.warning));
@@ -420,7 +421,8 @@ public class StatusInstallerFragment extends Fragment {
 
             if (!FrameworkZips.hasLoadedOnlineZips()) {
                 tvError.setText(R.string.framework_zip_load_failed);
-                tvError.setVisibility(View.VISIBLE);
+//                tvError.setVisibility(View.VISIBLE);
+                tvError.setVisibility(View.GONE);
             } else if (!hasZips) {
                 tvError.setText(R.string.framework_no_zips);
                 tvError.setVisibility(View.VISIBLE);
